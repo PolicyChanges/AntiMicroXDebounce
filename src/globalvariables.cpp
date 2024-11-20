@@ -91,7 +91,7 @@ int GlobalVariables::JoyButton::gamepadRefreshRate = 10;
 const bool GlobalVariables::AntimicroSettings::defaultDisabledWinEnhanced = false;
 const bool GlobalVariables::AntimicroSettings::defaultAssociateProfiles = true;
 const int GlobalVariables::AntimicroSettings::defaultSpringScreen = -1;
-const int GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate = 10; // unsigned
+const int GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate = 1; // unsigned
 
 // ---- INPUTDEVICE ---- //
 

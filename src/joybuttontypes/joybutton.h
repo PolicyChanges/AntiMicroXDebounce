@@ -611,6 +611,10 @@ class JoyButton : public QObject
     QTimer slotSetChangeTimer;
     static QTimer staticMouseEventTimer; // JoyButtonEvents class
 
+    // Debouncing
+    qint64 buttonPressedTimestamp[8];
+    qint64 buttonPressedDebounceInterval[8] = {0, 0, 32, 32, 0, 0, 0, 0};
+
     QString customName;
     QString actionName;
     QString activeZoneString;

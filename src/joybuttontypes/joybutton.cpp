@@ -119,6 +119,10 @@ JoyButton::JoyButton(int sdl_button_index, int originset, SetJoystick *parentSet
     m_originset = originset;
     quitEvent = true;
     DEBUG() << "Created button with ID: " << m_index_sdl << " For set: " << originset << " Name: " << getName();
+    for(int i = 0; i < 8; i++)
+    {
+        buttonPressedTimestamp[i] = QDateTime::currentMSecsSinceEpoch();
+    }
 }
 
 JoyButton::~JoyButton()
@@ -177,7 +181,7 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
 {
     if (Logger::isDebugEnabled())
         DEBUG() << "Processing JoyButton::joyEvent for: " << getName() << " SDL index: " << m_index_sdl
-                << " className: " << metaObject()->className();
+                << " className: " << metaObject()->className() << "Time stamp: " << QDateTime::currentMSecsSinceEpoch();
 
     if ((m_vdpad != nullptr) && !pendingEvent)
     {
@@ -271,6 +275,22 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 updateParamsAfterDistEvent();
             } else if (isButtonPressed && activePress)
             {
+                QString partialButtonName = QString(getPartialName());
+                if(partialButtonName.contains("Button 3"))
+                {
+                    if(QDateTime::currentMSecsSinceEpoch() - buttonPressedTimestamp[2] < buttonPressedDebounceInterval[2])
+                        return;
+                    else
+                        buttonPressedTimestamp[2] = QDateTime::currentMSecsSinceEpoch();
+                }
+                else if(partialButtonName.contains("Button 4"))
+                {
+                    if(QDateTime::currentMSecsSinceEpoch() - buttonPressedTimestamp[3] < buttonPressedDebounceInterval[3])
+                        return;
+                    else
+                        buttonPressedTimestamp[3] = QDateTime::currentMSecsSinceEpoch();
+                }
+
                 startSequenceOfPressActive(false, "Processing press for button #%1 - %2");
 
                 if (!keyPressTimer.isActive())
