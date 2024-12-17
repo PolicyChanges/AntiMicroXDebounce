@@ -39,6 +39,8 @@ SDLEventReader::SDLEventReader(QMap<SDL_JoystickID, InputDevice *> *joysticks, A
     settings->getLock()->lock();
     this->pollRate =
         settings->value("GamepadPollRate", GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate).toUInt();
+    this->defaultInterval =
+        settings->value("DebounceInterval", GlobalVariables::AntimicroSettings::defaultDebounceInterval).toUInt();
     settings->getLock()->unlock();
 
     pollRateTimer.setParent(this);

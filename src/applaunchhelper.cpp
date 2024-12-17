@@ -46,6 +46,7 @@ void AppLaunchHelper::initRunMethods()
         enablePossibleMouseSmoothing();
         changeMouseRefreshRate();
         changeSpringModeScreen();
+        changeDebounceInterval();
         changeGamepadPollRate();
 #ifdef Q_OS_WIN
         checkPointerPrecision();
@@ -101,6 +102,14 @@ void AppLaunchHelper::changeGamepadPollRate()
         JoyButton::setGamepadRefreshRate(pollRate, GlobalVariables::JoyButton::gamepadRefreshRate,
                                          JoyButton::getMouseHelper());
     }
+}
+
+void AppLaunchHelper::changeDebounceInterval()
+{
+    int defaultInterval = settings->value("DebounceInterval", GlobalVariables::AntimicroSettings::defaultDebounceInterval).toInt();
+    JoyButton::setDebounceInterval(defaultInterval, GlobalVariables::JoyButton::debounceInterval,
+                                         JoyButton::getMouseHelper());
+
 }
 
 void AppLaunchHelper::printControllerList(QMap<SDL_JoystickID, InputDevice *> *joysticks)

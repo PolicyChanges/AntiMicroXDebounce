@@ -24,7 +24,8 @@ if(POLICY CMP0071)
     cmake_policy(SET CMP0071 NEW)
 endif()
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
+#message(FATAL_ERROR "PATH: " "${PATH}")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}  "C:/VulkanSDK/1.3.296.0/cmake" "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" "${CMAKE_ROOT}/Modules")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -549,6 +550,10 @@ add_subdirectory("share/antimicrox/translations")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # SDL
+set(SDL2_PATH "C:/VulkanSDK/1.3.296.0")
+set(SDL2_DLL_LOCATION_DIR "C:/VulkanSDK/1.3.296.0/SDL2.dll")
+set(SDL2_LIBRARY "C:/VulkanSDK/1.3.296.0/Lib/SDL2.lib")
+set(SDL2_INCLUDE_DIR "C:/VulkanSDK/1.3.296.0/Include")
 set(SDL_REQUIRED_VERSION 2.0.6)
 find_package(SDL2 REQUIRED)
 
@@ -639,7 +644,7 @@ target_link_libraries(antimicrox
 target_include_directories(antimicrox PUBLIC
         ${SDL2_INCLUDE_DIRS}/SDL2
         )
-
+add_definitions(-DSDL_MAIN_HANDLED)
 ###############################
 # INSTALL
 ###############################

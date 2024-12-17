@@ -268,7 +268,7 @@ MainSettingsDialog::MainSettingsDialog(AntiMicroSettings *settings, QList<InputD
     {
         ui->gamepadPollRateComboBox->setCurrentIndex(gamepadPollIndex);
     }
-
+    ui->debounceIntervalSpinBox->setValue(GlobalVariables::JoyButton::debounceInterval);
     if (QApplication::platformName() == QStringLiteral("xcb"))
     {
         refreshExtraMouseInfo();
@@ -700,6 +700,14 @@ void MainSettingsDialog::saveNewSettings()
         JoyButton::setGamepadRefreshRate(gamepadPollRate, GlobalVariables::JoyButton::gamepadRefreshRate,
                                          JoyButton::getMouseHelper());
         settings->setValue("GamepadPollRate", QString::number(gamepadPollRate));
+    }
+
+    int debounceIntervalMs = ui->debounceIntervalSpinBox->value();
+    if (debounceIntervalMs != GlobalVariables::JoyButton::debounceInterval)
+    {
+        JoyButton::setDebounceInterval(debounceIntervalMs, GlobalVariables::JoyButton::debounceInterval,
+                                       JoyButton::getMouseHelper());
+        settings->setValue("DebounceInterval", QString::number(debounceIntervalMs));
     }
 
     // Advanced Tab
@@ -1919,6 +1927,8 @@ void MainSettingsDialog::resetGeneralSett()
     {
         ui->gamepadPollRateComboBox->setCurrentIndex(gamepadPollIndex);
     }
+
+    ui->debounceIntervalSpinBox->setValue(GlobalVariables::JoyButton::debounceInterval);
 
     ui->closeToTrayCheckBox->setChecked(false);
     ui->attachNumKeypadCheckbox->setChecked(false);

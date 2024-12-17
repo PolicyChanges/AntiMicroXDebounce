@@ -44,6 +44,7 @@ class AppLaunchHelper : public QObject
     void changeMouseRefreshRate();
     void changeSpringModeScreen();
     void changeGamepadPollRate();
+    void changeDebounceInterval();
 #ifdef Q_OS_WIN
     void checkPointerPrecision();
 #endif

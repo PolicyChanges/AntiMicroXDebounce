@@ -69,6 +69,7 @@ class SDLEventReader : public QObject
     bool sdlIsOpen;
     AntiMicroSettings *settings;
     int pollRate;
+    int defaultInterval;
     QTimer pollRateTimer;
 
     void loadSdlMappingsFromDatabase();

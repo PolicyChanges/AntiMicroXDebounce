@@ -240,7 +240,7 @@ class JoyButton : public QObject
     static void setSpringModeScreen(int screen, int &springModeScreen);
     static void resetActiveButtonMouseDistances(JoyButtonMouseHelper *mouseHelper);
     static void setGamepadRefreshRate(int refresh, int &gamepadRefreshRate, JoyButtonMouseHelper *mouseHelper);
-    static void setDebounceInterval(int interval, int &gamepadDebouceInterval, JoyButtonMouseHelper *mouseHelper);
+    static void JoyButton::setDefaultInterval(int interval, int &gamepadDebouceInterval, JoyButtonMouseHelper *mouseHelper)
     static void restartLastMouseTime(QElapsedTimer *testOldMouseTime);
     static void setStaticMouseThread(QThread *thread, QTimer *staticMouseEventTimer, QElapsedTimer *testOldMouseTime,
                                      int idleMouseRefrRate, JoyButtonMouseHelper *mouseHelper);

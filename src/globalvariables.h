@@ -36,6 +36,7 @@ class JoyButton
     static int springModeScreen;
     // gamepad poll rate used by the application in ms
     static int gamepadRefreshRate;
+    static int debounceInterval;
 
     static double cursorRemainderX;
     static double cursorRemainderY;
@@ -96,6 +97,7 @@ class AntimicroSettings
     static const bool defaultAssociateProfiles;
     static const int defaultSpringScreen;
     static const int defaultSDLGamepadPollRate;
+    static const int defaultDebounceInterval;
 };
 
 class InputDevice

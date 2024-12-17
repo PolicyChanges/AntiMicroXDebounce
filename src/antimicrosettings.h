@@ -23,6 +23,7 @@
 
 #include <QSettings>
 
+
 class AntiMicroSettings : public QSettings
 {
     Q_OBJECT

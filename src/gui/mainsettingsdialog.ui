@@ -196,6 +196,29 @@
              </property>
             </widget>
            </item>
+
+           <item>
+            <widget class="QLabel" name="debounceIntervalLabel">
+             <property name="text">
+              <string>Debounce Interval:</string>
+             </property>
+            </widget>
+           </item>
+
+          <item>
+            <widget class="QSpinBox" name="debounceIntervalSpinBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Length of time required for pressing a button in milliseconds.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="maximum">
+              <number>64</number>
+             </property>
+             <property name="value">
+              <number>32</number>
+             </property>
+            </widget>
+           </item>
+
           </layout>
          </item>
          <item>

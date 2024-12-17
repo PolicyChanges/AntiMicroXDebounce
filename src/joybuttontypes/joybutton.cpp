@@ -118,7 +118,7 @@ JoyButton::JoyButton(int sdl_button_index, int originset, SetJoystick *parentSet
     m_index_sdl = sdl_button_index;
     m_originset = originset;
     quitEvent = true;
-    DEBUG() << "Created button with ID: " << m_index_sdl << " For set: " << originset << " Name: " << getName();
+    //DEBUG() << "Created button with ID: " << m_index_sdl << " For set: " << originset << " Name: " << getName();
     for(int i = 0; i < 8; i++)
     {
         buttonPressedTimestamp[i] = QDateTime::currentMSecsSinceEpoch();
@@ -278,14 +278,14 @@ void JoyButton::joyEvent(bool pressed, bool ignoresets)
                 QString partialButtonName = QString(getPartialName());
                 if(partialButtonName.contains("Button 3"))
                 {
-                    if(QDateTime::currentMSecsSinceEpoch() - buttonPressedTimestamp[2] < buttonPressedDebounceInterval[2])
+                    if(QDateTime::currentMSecsSinceEpoch() - buttonPressedTimestamp[2] < GlobalVariables::JoyButton::debounceInterval)
                         return;
                     else
                         buttonPressedTimestamp[2] = QDateTime::currentMSecsSinceEpoch();
                 }
                 else if(partialButtonName.contains("Button 4"))
                 {
-                    if(QDateTime::currentMSecsSinceEpoch() - buttonPressedTimestamp[3] < buttonPressedDebounceInterval[3])
+                    if(QDateTime::currentMSecsSinceEpoch() - buttonPressedTimestamp[3] < GlobalVariables::JoyButton::debounceInterval)
                         return;
                     else
                         buttonPressedTimestamp[3] = QDateTime::currentMSecsSinceEpoch();
@@ -4318,6 +4318,19 @@ void JoyButton::setGamepadRefreshRate(int refresh, int &gamepadRefreshRate, JoyB
     {
         gamepadRefreshRate = refresh;
         mouseHelper->carryGamePollRateUpdate(gamepadRefreshRate);
+    }
+}
+
+/**
+ * @brief Set the default interval debouncinig to be used in the application.
+ * @param Interval in ms.
+ */
+
+void JoyButton::setDebounceInterval(int interval, int &gamepadDebouceInterval, JoyButtonMouseHelper *mouseHelper)
+{
+    if ((interval >= 1) && (interval <= 64))
+    {
+        gamepadDebouceInterval = interval;
     }
 }
 

@@ -85,6 +85,7 @@ int GlobalVariables::JoyButton::mouseHistorySize = 1;
 int GlobalVariables::JoyButton::mouseRefreshRate = 5;
 int GlobalVariables::JoyButton::springModeScreen = -1;
 int GlobalVariables::JoyButton::gamepadRefreshRate = 10;
+int GlobalVariables::JoyButton::debounceInterval = 16;
 
 // ---- ANTIMICROSETTINGS --- //
 
@@ -92,6 +93,7 @@ const bool GlobalVariables::AntimicroSettings::defaultDisabledWinEnhanced = fals
 const bool GlobalVariables::AntimicroSettings::defaultAssociateProfiles = true;
 const int GlobalVariables::AntimicroSettings::defaultSpringScreen = -1;
 const int GlobalVariables::AntimicroSettings::defaultSDLGamepadPollRate = 1; // unsigned
+const int GlobalVariables::AntimicroSettings::defaultDebounceInterval = 32;
 
 // ---- INPUTDEVICE ---- //
 
